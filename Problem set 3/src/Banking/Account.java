@@ -3,17 +3,68 @@ package Banking;
 import java.util.Date;
 
 public class Account {
-	
+
 	private int id;
 	private double balance;
 	private double annualInterestRate;
 	private Date dateCreated;
-	
-	public Account(){
+
+	public Account() {
 		this.id = 0;
 		this.balance = 0;
 		this.annualInterestRate = 0;
 		this.dateCreated = new Date();
-		
+
+	}
+
+	public Account(int id, double balance) {
+		this.id = id;
+		this.balance = balance;
+		this.annualInterestRate = .045;
+		this.dateCreated = new Date();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public double getAnnualInterestRate() {
+		return annualInterestRate;
+	}
+
+	public void setAnnualInterestRate(double annualInterestRate) {
+		this.annualInterestRate = annualInterestRate;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public double getMonthlyInterestRate() {
+		return (getAnnualInterestRate() / 12);
+	}
+
+	public void withdraw(double withdrawal) throws InsufficientFundsException {
+		if (withdrawal > balance) {
+			double overdraw = withdrawal - balance;
+			throw new InsufficientFundsException(overdraw);
+		}else
+			this.balance = balance - withdrawal;
+	}
+
+	public void deposit(double deposit) {
+		setBalance((getBalance() + deposit));
 	}
 }
