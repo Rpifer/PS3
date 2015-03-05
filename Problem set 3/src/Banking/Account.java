@@ -61,7 +61,7 @@ public class Account {
 			double overdraw = withdrawal - balance;
 			throw new InsufficientFundsException(overdraw);
 		}else
-			this.balance = balance - withdrawal;
+			this.balance -= withdrawal;
 	}
 
 	public void deposit(double deposit) {

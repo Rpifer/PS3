@@ -21,7 +21,8 @@ public class test {
 		assertEquals(withAmount, testAccount.getBalance(), delta);
 		testAccount.deposit(3000);
 		assertEquals(depAmount, testAccount.getBalance(), delta);
+		//Everything passes with overdraw commented out.
+		//I don't know how to 'test' and exception
 		testAccount.withdraw(30000);
 	}
-
 }
